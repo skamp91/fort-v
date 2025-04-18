@@ -14,7 +14,7 @@ export default function Home() {
           <div className='flex flex-col items-center space-y-4 text-center'>
             <div className='space-y-2'>
               <h1 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl'>
-                Kleingartenverein Fort V e.V.
+                Kleingartenverein Fort V e.V. Test
               </h1>
               <p className='mx-auto max-w-[700px] text-white/90 md:text-xl'>
                 Willkommen in unserer Gartengemeinschaft. Entdecken Sie die
@@ -182,7 +182,7 @@ export default function Home() {
           <div className='flex flex-col md:flex-row justify-between items-center gap-4'>
             <div className='text-center md:text-left'>
               <p className='text-sm'>
-                © 2024 Kleingartenverein Fort V e.V.. Alle Rechte vorbehalten.
+                © 2024 Kleingartenverein Fort 5 e.V.. Alle Rechte vorbehalten.
               </p>
             </div>
             <div className='flex gap-4'>
