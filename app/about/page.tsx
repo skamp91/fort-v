@@ -6,7 +6,7 @@ export default function AboutPage() {
   return (
     <div className='container px-4 py-12 md:px-6 md:py-16 lg:py-20'>
       <div className='text-center mb-10'>
-        <h1 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-green-600'>
+        <h1 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-green-800'>
           Über uns
         </h1>
         <p className='mt-4 text-gray-500 md:text-xl'>
@@ -18,7 +18,7 @@ export default function AboutPage() {
       <div className='grid gap-12'>
         <section className='grid gap-6 lg:grid-cols-2 lg:gap-12 items-center'>
           <div>
-            <h2 className='text-2xl font-bold tracking-tighter sm:text-3xl text-green-600 mb-4'>
+            <h2 className='text-2xl font-bold tracking-tighter sm:text-3xl text-green-800 mb-4'>
               Unsere Geschichte
             </h2>
             <div className='space-y-4 text-gray-500'>
@@ -52,14 +52,14 @@ export default function AboutPage() {
         </section>
 
         <section>
-          <h2 className='text-2xl font-bold tracking-tighter sm:text-3xl text-green-600 mb-6 text-center'>
+          <h2 className='text-2xl font-bold tracking-tighter sm:text-3xl text-green-800 mb-6 text-center'>
             Unsere Werte
           </h2>
           <div className='grid gap-6 sm:grid-cols-2 lg:grid-cols-4'>
             <Card>
               <CardHeader className='pb-2'>
                 <CardTitle className='text-xl flex items-center gap-2'>
-                  <Leaf className='h-5 w-5 text-green-600' />
+                  <Leaf className='h-5 w-5 text-green-800' />
                   Nachhaltigkeit
                 </CardTitle>
               </CardHeader>
@@ -73,7 +73,7 @@ export default function AboutPage() {
             <Card>
               <CardHeader className='pb-2'>
                 <CardTitle className='text-xl flex items-center gap-2'>
-                  <Users className='h-5 w-5 text-green-600' />
+                  <Users className='h-5 w-5 text-green-800' />
                   Gemeinschaft
                 </CardTitle>
               </CardHeader>
@@ -87,7 +87,7 @@ export default function AboutPage() {
             <Card>
               <CardHeader className='pb-2'>
                 <CardTitle className='text-xl flex items-center gap-2'>
-                  <Flower className='h-5 w-5 text-green-600' />
+                  <Flower className='h-5 w-5 text-green-800' />
                   Biodiversität
                 </CardTitle>
               </CardHeader>
@@ -101,7 +101,7 @@ export default function AboutPage() {
             <Card>
               <CardHeader className='pb-2'>
                 <CardTitle className='text-xl flex items-center gap-2'>
-                  <CalendarDays className='h-5 w-5 text-green-600' />
+                  <CalendarDays className='h-5 w-5 text-green-800' />
                   Tradition
                 </CardTitle>
               </CardHeader>
@@ -124,7 +124,7 @@ export default function AboutPage() {
             />
           </div>
           <div className='order-1 lg:order-2'>
-            <h2 className='text-2xl font-bold tracking-tighter sm:text-3xl text-green-600 mb-4'>
+            <h2 className='text-2xl font-bold tracking-tighter sm:text-3xl text-green-800 mb-4'>
               Unser Vorstand
             </h2>
             <div className='space-y-4 text-gray-500'>
@@ -150,7 +150,7 @@ export default function AboutPage() {
         </section>
 
         <section className='bg-green-50 p-6 rounded-lg'>
-          <h2 className='text-2xl font-bold tracking-tighter sm:text-3xl text-green-600 mb-4 text-center'>
+          <h2 className='text-2xl font-bold tracking-tighter sm:text-3xl text-green-800 mb-4 text-center'>
             Mitglied werden
           </h2>
           <p className='text-center text-gray-500 mb-6'>

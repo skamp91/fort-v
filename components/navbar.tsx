@@ -24,7 +24,7 @@ export default function Navbar() {
     <header className='sticky top-0 z-50 w-full border-b bg-white'>
       <div className='container flex h-16 items-center px-4 md:px-6'>
         <Link href='/' className='flex items-center gap-2'>
-          {/* <Flower className='h-6 w-6 text-green-600' /> */}
+          {/* <Flower className='h-6 w-6 text-green-800' /> */}
           <img
             src='/schriftlogo-removebg-preview.png'
             alt='Fort V e.V. Logo'
@@ -37,7 +37,7 @@ export default function Navbar() {
               key={route.href}
               href={route.href}
               className={`text-sm font-medium transition-colors hover:text-green-600 ${
-                pathname === route.href ? 'text-green-600' : 'text-gray-600'
+                pathname === route.href ? 'text-green-800' : 'text-gray-600'
               }`}
             >
               {route.label}
@@ -59,7 +59,7 @@ export default function Navbar() {
                   href={route.href}
                   onClick={() => setIsOpen(false)}
                   className={`text-lg font-medium transition-colors hover:text-green-600 ${
-                    pathname === route.href ? 'text-green-600' : 'text-gray-600'
+                    pathname === route.href ? 'text-green-800' : 'text-gray-600'
                   }`}
                 >
                   {route.label}

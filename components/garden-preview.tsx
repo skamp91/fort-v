@@ -96,7 +96,7 @@ export default function GardenPreview() {
               <Badge className='bg-green-600'>Verfügbar</Badge>
             </div>
             <CardDescription className='flex items-center gap-1'>
-              <Ruler className='h-4 w-4 text-green-600' />
+              <Ruler className='h-4 w-4 text-green-800' />
               {garden.size}
             </CardDescription>
           </CardHeader>

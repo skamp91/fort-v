@@ -72,7 +72,7 @@ export default function ContactPage() {
     <div className='container px-4 py-12 md:px-6 md:py-16 lg:py-20'>
       <div className='mx-auto max-w-4xl'>
         <div className='text-center mb-10'>
-          <h1 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-green-600'>
+          <h1 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-green-800'>
             Kontakt
           </h1>
           <p className='mt-4 text-gray-500 md:text-xl'>
@@ -155,7 +155,7 @@ export default function ContactPage() {
               </CardHeader>
               <CardContent className='space-y-4'>
                 <div className='flex items-start space-x-4'>
-                  <MapPin className='h-5 w-5 text-green-600 mt-0.5' />
+                  <MapPin className='h-5 w-5 text-green-800 mt-0.5' />
                   <div>
                     <h3 className='font-medium'>Adresse</h3>
                     <p className='text-sm text-gray-500'>
@@ -168,7 +168,7 @@ export default function ContactPage() {
                   </div>
                 </div>
                 <div className='flex items-start space-x-4'>
-                  <Phone className='h-5 w-5 text-green-600 mt-0.5' />
+                  <Phone className='h-5 w-5 text-green-800 mt-0.5' />
                   <div>
                     <h3 className='font-medium'>Telefon</h3>
                     <p className='text-sm text-gray-500'>+49 123 456789</p>
@@ -178,7 +178,7 @@ export default function ContactPage() {
                   </div>
                 </div>
                 <div className='flex items-start space-x-4'>
-                  <Mail className='h-5 w-5 text-green-600 mt-0.5' />
+                  <Mail className='h-5 w-5 text-green-800 mt-0.5' />
                   <div>
                     <h3 className='font-medium'>E-Mail</h3>
                     <p className='text-sm text-gray-500'>

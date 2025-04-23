@@ -152,7 +152,7 @@ export default function GardensPage() {
   return (
     <div className='container px-4 py-12 md:px-6 md:py-16 lg:py-20'>
       <div className='text-center mb-10'>
-        <h1 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-green-600'>
+        <h1 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-green-800'>
           Freie Gärten
         </h1>
         <p className='mt-4 text-gray-500 md:text-xl'>
@@ -205,7 +205,7 @@ export default function GardensPage() {
                   <Badge className='bg-green-600'>Verfügbar</Badge>
                 </div>
                 <CardDescription className='flex items-center gap-1'>
-                  <Ruler className='h-4 w-4 text-green-600' />
+                  <Ruler className='h-4 w-4 text-green-800' />
                   {garden.size}
                 </CardDescription>
               </CardHeader>
@@ -259,7 +259,7 @@ export default function GardensPage() {
       )}
 
       <div className='mt-12 bg-green-50 p-6 rounded-lg'>
-        <h2 className='text-xl font-semibold text-green-600 mb-4'>
+        <h2 className='text-xl font-semibold text-green-800 mb-4'>
           Interesse an einem Garten?
         </h2>
         <p className='mb-4'>

@@ -105,18 +105,18 @@ export default function EventWidget() {
           <CardHeader className='pb-2'>
             <CardTitle>{event.title}</CardTitle>
             <CardDescription className='flex items-center gap-1'>
-              <CalendarDays className='h-4 w-4 text-green-600' />
+              <CalendarDays className='h-4 w-4 text-green-800' />
               {formatDate(event.date)}
             </CardDescription>
           </CardHeader>
           <CardContent className='flex-1'>
             <div className='space-y-2 text-sm'>
               <div className='flex items-center gap-2'>
-                <Clock className='h-4 w-4 text-green-600' />
+                <Clock className='h-4 w-4 text-green-800' />
                 <span>{event.time}</span>
               </div>
               <div className='flex items-center gap-2'>
-                <MapPin className='h-4 w-4 text-green-600' />
+                <MapPin className='h-4 w-4 text-green-800' />
                 <span>{event.location}</span>
               </div>
               <p className='text-gray-500 mt-2'>{event.description}</p>

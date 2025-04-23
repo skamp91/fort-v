@@ -96,7 +96,9 @@ export default function EventsPage() {
             id: '4',
             title: 'Mitgliederversammlung',
             date: `${currentYear}-${
-              formattedCurrentMonth < 12 ? formattedCurrentMonth + 1 : '01'
+              Number(formattedCurrentMonth) < 12
+                ? formattedCurrentMonth + 1
+                : '01'
             }-05`, // Next month
             time: '18:00 - 20:00',
             location: 'Vereinshaus',
@@ -108,7 +110,9 @@ export default function EventsPage() {
             id: '5',
             title: 'Erntefest',
             date: `${currentYear}-${
-              formattedCurrentMonth < 11 ? formattedCurrentMonth + 2 : '02'
+              Number(formattedCurrentMonth) < 11
+                ? Number(formattedCurrentMonth) + 2
+                : '02'
             }-12`, // Two months ahead
             time: '14:00 - 19:00',
             location: 'Festwiese',
@@ -120,7 +124,9 @@ export default function EventsPage() {
             id: '6',
             title: 'Workshop: Garten winterfest machen',
             date: `${currentYear}-${
-              formattedCurrentMonth < 10 ? formattedCurrentMonth + 3 : '03'
+              Number(formattedCurrentMonth) < 10
+                ? formattedCurrentMonth + 3
+                : '03'
             }-08`, // Three months ahead
             time: '15:00 - 17:00',
             location: 'Gemeinschaftsgarten',
@@ -196,7 +202,7 @@ export default function EventsPage() {
   return (
     <div className='container px-4 py-12 md:px-6 md:py-16 lg:py-20'>
       <div className='text-center mb-10'>
-        <h1 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-green-600'>
+        <h1 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-green-800'>
           Veranstaltungen
         </h1>
         <p className='mt-4 text-gray-500 md:text-xl'>
@@ -240,18 +246,18 @@ export default function EventsPage() {
               <CardHeader className='pb-2'>
                 <CardTitle>{event.title}</CardTitle>
                 <CardDescription className='flex items-center gap-1'>
-                  <CalendarDays className='h-4 w-4 text-green-600' />
+                  <CalendarDays className='h-4 w-4 text-green-800' />
                   {formatDate(event.date)}
                 </CardDescription>
               </CardHeader>
               <CardContent className='flex-1'>
                 <div className='space-y-2 text-sm'>
                   <div className='flex items-center gap-2'>
-                    <Clock className='h-4 w-4 text-green-600' />
+                    <Clock className='h-4 w-4 text-green-800' />
                     <span>{event.time}</span>
                   </div>
                   <div className='flex items-center gap-2'>
-                    <MapPin className='h-4 w-4 text-green-600' />
+                    <MapPin className='h-4 w-4 text-green-800' />
                     <span>{event.location}</span>
                   </div>
                   <p className='text-gray-500 mt-2'>{event.description}</p>
