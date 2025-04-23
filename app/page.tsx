@@ -18,7 +18,7 @@ export default function Home() {
         />
         <div className='absolute inset-0 bg-black opacity-50 z-0' /> */}
         <div className="absolute inset-0 z-0 bg-[url('/logoOhneText__BG.png')] bg-no-repeat bg-center bg-contain">
-          <div className='absolute inset-0 bg-black opacity-40' />
+          <div className='absolute inset-0 bg-black opacity-50' />
         </div>
 
         {/* Inhalt */}
@@ -35,15 +35,12 @@ export default function Home() {
             </div>
             <div className='space-x-4'>
               <Link href='/gardens'>
-                <Button className='bg-white text-green-600 hover:bg-green-50'>
+                <Button className='bg-white text-green-800 hover:bg-green-100'>
                   Freie Gärten
                 </Button>
               </Link>
               <Link href='/contact'>
-                <Button
-                  variant='outline'
-                  className='border-white text-white hover:bg-white/20'
-                >
+                <Button className='bg-white text-green-800 hover:bg-green-100'>
                   Kontakt
                 </Button>
               </Link>
@@ -57,13 +54,14 @@ export default function Home() {
             <div className='flex flex-col gap-4 md:gap-8'>
               <div className='mx-auto grid max-w-5xl items-center gap-6 py-6 lg:grid-cols-2 lg:gap-12'>
                 <div className='space-y-4'>
-                  <h2 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-green-600'>
+                  <h2 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-green-800'>
                     Über uns
                   </h2>
                   <p className='text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400'>
-                    Unser Kleingartenverein wurde 1975 gegründet und bietet eine
-                    Fort V e.V. mitten in der Stadt. Wir fördern nachhaltiges
-                    Gärtnern, Biodiversität und eine starke Gemeinschaft.
+                    Unser Kleingartenverein wurde 1975 gegründet und ist seitdem
+                    ein Ort der Erholung und Gemeinschaft. Hier können Sie die
+                    Natur genießen, eigenes Obst und Gemüse anbauen und bei
+                    einer Tasse Kaffee mit Nachbarn plaudern.
                   </p>
                 </div>
                 <div className='flex justify-center'>
@@ -80,7 +78,7 @@ export default function Home() {
                 <Card>
                   <CardHeader className='pb-2'>
                     <CardTitle className='text-xl flex items-center gap-2'>
-                      <Flower className='h-5 w-5 text-green-600' />
+                      <Flower className='h-5 w-5 text-green-800' />
                       Gemeinschaft
                     </CardTitle>
                   </CardHeader>
@@ -94,7 +92,7 @@ export default function Home() {
                 <Card>
                   <CardHeader className='pb-2'>
                     <CardTitle className='text-xl flex items-center gap-2'>
-                      <MapPin className='h-5 w-5 text-green-600' />
+                      <MapPin className='h-5 w-5 text-green-800' />
                       Natur erleben
                     </CardTitle>
                   </CardHeader>
@@ -108,7 +106,7 @@ export default function Home() {
                 <Card>
                   <CardHeader className='pb-2'>
                     <CardTitle className='text-xl flex items-center gap-2'>
-                      <CalendarDays className='h-5 w-5 text-green-600' />
+                      <CalendarDays className='h-5 w-5 text-green-800' />
                       Veranstaltungen
                     </CardTitle>
                   </CardHeader>
@@ -127,7 +125,7 @@ export default function Home() {
           <div className='container px-4 md:px-6'>
             <div className='flex flex-col gap-4 md:gap-8'>
               <div className='space-y-4 text-center'>
-                <h2 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-green-600'>
+                <h2 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-green-800'>
                   Kommende Veranstaltungen
                 </h2>
                 <p className='mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400'>
@@ -143,7 +141,7 @@ export default function Home() {
           <div className='container px-4 md:px-6'>
             <div className='flex flex-col gap-4 md:gap-8'>
               <div className='space-y-4 text-center'>
-                <h2 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-green-600'>
+                <h2 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-green-800'>
                   Freie Gärten
                 </h2>
                 <p className='mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400'>
@@ -168,7 +166,7 @@ export default function Home() {
           <div className='container px-4 md:px-6'>
             <div className='flex flex-col gap-4 md:gap-8'>
               <div className='space-y-4 text-center'>
-                <h2 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-green-600'>
+                <h2 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-green-800'>
                   Kontakt
                 </h2>
                 <p className='mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400'>
