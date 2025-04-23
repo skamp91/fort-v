@@ -9,8 +9,20 @@ import GardenPreview from '@/components/garden-preview';
 export default function Home() {
   return (
     <div className='flex flex-col min-h-screen'>
-      <header className='bg-green-600 text-white py-12 md:py-24'>
-        <div className='container px-4 md:px-6'>
+      <header className='relative bg-green-600 text-white py-12 md:py-24'>
+        {/* Hintergrundbild + Overlay */}
+        {/* <img
+          src='/logoOhneText.webp'
+          alt='Header Hintergrund'
+          className='absolute inset-0 h-full w-full object-cover z-0'
+        />
+        <div className='absolute inset-0 bg-black opacity-50 z-0' /> */}
+        <div className="absolute inset-0 z-0 bg-[url('/logoOhneText__BG.png')] bg-no-repeat bg-center bg-contain">
+          <div className='absolute inset-0 bg-black opacity-40' />
+        </div>
+
+        {/* Inhalt */}
+        <div className='relative z-10 container px-4 md:px-6'>
           <div className='flex flex-col items-center space-y-4 text-center'>
             <div className='space-y-2'>
               <h1 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl'>
