@@ -3,6 +3,7 @@
 import type React from 'react';
 
 import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Mail, MapPin, Phone } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -16,15 +17,29 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 
 export default function ContactPage() {
   const { toast } = useToast();
+  const searchParams = useSearchParams();
+  const gardenNumber = searchParams.get('garden');
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: '',
-    message: '',
+    phone: '',
+    subject: gardenNumber ? `Anfrage zu Garten ${gardenNumber}` : '',
+    message: gardenNumber
+      ? `Ich interessiere mich für den Garten ${gardenNumber} und hätte gerne weitere Informationen.`
+      : '',
+    inquiryType: gardenNumber ? 'garden' : '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -33,6 +48,10 @@ export default function ContactPage() {
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSelectChange = (value: string) => {
+    setFormData((prev) => ({ ...prev, inquiryType: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -53,8 +72,10 @@ export default function ContactPage() {
       setFormData({
         name: '',
         email: '',
+        phone: '',
         subject: '',
         message: '',
+        inquiryType: '',
       });
     } catch (error) {
       toast({
@@ -72,7 +93,7 @@ export default function ContactPage() {
     <div className='container px-4 py-12 md:px-6 md:py-16 lg:py-20'>
       <div className='mx-auto max-w-4xl'>
         <div className='text-center mb-10'>
-          <h1 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-green-800'>
+          <h1 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-green-600'>
             Kontakt
           </h1>
           <p className='mt-4 text-gray-500 md:text-xl'>
@@ -115,6 +136,34 @@ export default function ContactPage() {
                   />
                 </div>
                 <div className='space-y-2'>
+                  <Label htmlFor='phone'>Telefon (optional)</Label>
+                  <Input
+                    id='phone'
+                    name='phone'
+                    type='tel'
+                    placeholder='Ihre Telefonnummer'
+                    value={formData.phone}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className='space-y-2'>
+                  <Label htmlFor='inquiryType'>Art der Anfrage</Label>
+                  <Select
+                    value={formData.inquiryType}
+                    onValueChange={handleSelectChange}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder='Bitte wählen Sie' />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value='garden'>Gartenanfrage</SelectItem>
+                      <SelectItem value='membership'>Mitgliedschaft</SelectItem>
+                      <SelectItem value='event'>Veranstaltung</SelectItem>
+                      <SelectItem value='other'>Sonstiges</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className='space-y-2'>
                   <Label htmlFor='subject'>Betreff</Label>
                   <Input
                     id='subject'
@@ -155,11 +204,11 @@ export default function ContactPage() {
               </CardHeader>
               <CardContent className='space-y-4'>
                 <div className='flex items-start space-x-4'>
-                  <MapPin className='h-5 w-5 text-green-800 mt-0.5' />
+                  <MapPin className='h-5 w-5 text-green-600 mt-0.5' />
                   <div>
                     <h3 className='font-medium'>Adresse</h3>
                     <p className='text-sm text-gray-500'>
-                      Kleingartenverein Fort V e.V. e.V.
+                      Kleingartenverein Grüne Oase e.V.
                       <br />
                       Gartenweg 123
                       <br />
@@ -168,7 +217,7 @@ export default function ContactPage() {
                   </div>
                 </div>
                 <div className='flex items-start space-x-4'>
-                  <Phone className='h-5 w-5 text-green-800 mt-0.5' />
+                  <Phone className='h-5 w-5 text-green-600 mt-0.5' />
                   <div>
                     <h3 className='font-medium'>Telefon</h3>
                     <p className='text-sm text-gray-500'>+49 123 456789</p>
@@ -178,7 +227,7 @@ export default function ContactPage() {
                   </div>
                 </div>
                 <div className='flex items-start space-x-4'>
-                  <Mail className='h-5 w-5 text-green-800 mt-0.5' />
+                  <Mail className='h-5 w-5 text-green-600 mt-0.5' />
                   <div>
                     <h3 className='font-medium'>E-Mail</h3>
                     <p className='text-sm text-gray-500'>
@@ -214,6 +263,22 @@ export default function ContactPage() {
                 </div>
               </CardContent>
             </Card>
+
+            {gardenNumber && (
+              <Card className='bg-green-50'>
+                <CardHeader>
+                  <CardTitle>Ihre Gartenanfrage</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className='text-sm'>
+                    Sie interessieren sich für{' '}
+                    <strong>Garten {gardenNumber}</strong>. Wir haben den
+                    Betreff und eine Nachricht für Sie vorbereitet. Sie können
+                    diese natürlich anpassen.
+                  </p>
+                </CardContent>
+              </Card>
+            )}
           </div>
         </div>
       </div>
