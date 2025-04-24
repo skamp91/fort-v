@@ -10,18 +10,18 @@ import { UIImage } from '@/components/ui-image';
 export default function Home() {
   return (
     <div className='flex flex-col min-h-screen'>
-      <header className='relative bg-gradient-to-r from-green-600 via-green-700 via-green-800 via-green-700 to-green-600 text-white py-12 md:py-24'>
+      <header className='relative bg-gradient-to-r from-green-500 via-green-700 via-green-900 via-green-700 to-green-500 text-white h-[400px] md:h-[500px] py-12 md:py-24'>
         {/* Hintergrundbild + Overlay */}
         <div className="absolute inset-0 z-0 bg-[url('/logoOhneText__BG.png')] bg-no-repeat bg-center bg-contain">
-          <div className='absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/30' />
+          <div className='absolute inset-0 bg-gradient-to-b from-black/40 via-black/80 to-black/40' />
         </div>
 
         {/* Inhalt */}
-        <div className='relative z-10 container px-4 md:px-6'>
+        <div className='container px-4 md:px-6 relative z-10 h-full flex items-center justify-center'>
           <div className='flex flex-col items-center space-y-4 text-center'>
             <div className='space-y-2'>
               <h1 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl'>
-                Kleingartenverein Fort V e.V. Test
+                Kleingartenverein Fort V e.V.
               </h1>
               <p className='mx-auto max-w-[700px] text-white/90 md:text-xl'>
                 Willkommen in unserer Gartengemeinschaft. Entdecken Sie die
@@ -35,7 +35,10 @@ export default function Home() {
                 </Button>
               </Link>
               <Link href='/events'>
-                <Button className='bg-white text-green-800 hover:bg-green-100'>
+                <Button
+                  variant='outline'
+                  className='bg-white/10 text-white border-white/20 hover:bg-white/20'
+                >
                   Veranstaltungen
                 </Button>
               </Link>
@@ -53,10 +56,9 @@ export default function Home() {
                     Über uns
                   </h2>
                   <p className='text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400'>
-                    Unser Kleingartenverein wurde 1975 gegründet und ist seitdem
-                    ein Ort der Erholung und Gemeinschaft. Hier können Sie die
-                    Natur genießen, eigenes Obst und Gemüse anbauen und bei
-                    einer Tasse Kaffee mit Nachbarn plaudern.
+                    Unser Kleingartenverein wurde 1975 gegründet und bietet eine
+                    grüne Oase mitten in der Stadt. Wir fördern nachhaltiges
+                    Gärtnern, Biodiversität und eine starke Gemeinschaft.
                   </p>
                 </div>
                 <UIImage
@@ -184,7 +186,7 @@ export default function Home() {
           <div className='flex flex-col md:flex-row justify-between items-center gap-4'>
             <div className='text-center md:text-left'>
               <p className='text-sm'>
-                © 2024 Kleingartenverein Fort 5 e.V.. Alle Rechte vorbehalten.
+                © 2025 Kleingartenverein Fort V e.V. Alle Rechte vorbehalten.
               </p>
             </div>
             <div className='flex gap-4'>
