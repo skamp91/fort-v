@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import {
   CalendarDays,
   ChevronLeft,
@@ -111,7 +112,7 @@ export default function EventsPage() {
             title: 'Erntefest',
             date: `${currentYear}-${
               Number(formattedCurrentMonth) < 11
-                ? Number(formattedCurrentMonth) + 2
+                ? formattedCurrentMonth + 2
                 : '02'
             }-12`, // Two months ahead
             time: '14:00 - 19:00',
@@ -202,7 +203,7 @@ export default function EventsPage() {
   return (
     <div className='container px-4 py-12 md:px-6 md:py-16 lg:py-20'>
       <div className='text-center mb-10'>
-        <h1 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-green-800'>
+        <h1 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-green-600'>
           Veranstaltungen
         </h1>
         <p className='mt-4 text-gray-500 md:text-xl'>
@@ -242,33 +243,39 @@ export default function EventsPage() {
       {filteredEvents.length > 0 ? (
         <div className='grid gap-6 md:grid-cols-2 lg:grid-cols-3'>
           {filteredEvents.map((event) => (
-            <Card key={event.id} className='flex flex-col'>
-              <CardHeader className='pb-2'>
-                <CardTitle>{event.title}</CardTitle>
-                <CardDescription className='flex items-center gap-1'>
-                  <CalendarDays className='h-4 w-4 text-green-800' />
-                  {formatDate(event.date)}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className='flex-1'>
-                <div className='space-y-2 text-sm'>
-                  <div className='flex items-center gap-2'>
-                    <Clock className='h-4 w-4 text-green-800' />
-                    <span>{event.time}</span>
+            <Link
+              href={`/events/${event.id}`}
+              key={event.id}
+              className='block h-full'
+            >
+              <Card className='h-full flex flex-col hover:shadow-md transition-shadow'>
+                <CardHeader className='pb-2'>
+                  <CardTitle>{event.title}</CardTitle>
+                  <CardDescription className='flex items-center gap-1'>
+                    <CalendarDays className='h-4 w-4 text-green-600' />
+                    {formatDate(event.date)}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className='flex-1'>
+                  <div className='space-y-2 text-sm'>
+                    <div className='flex items-center gap-2'>
+                      <Clock className='h-4 w-4 text-green-600' />
+                      <span>{event.time}</span>
+                    </div>
+                    <div className='flex items-center gap-2'>
+                      <MapPin className='h-4 w-4 text-green-600' />
+                      <span>{event.location}</span>
+                    </div>
+                    <p className='text-gray-500 mt-2'>{event.description}</p>
                   </div>
-                  <div className='flex items-center gap-2'>
-                    <MapPin className='h-4 w-4 text-green-800' />
-                    <span>{event.location}</span>
-                  </div>
-                  <p className='text-gray-500 mt-2'>{event.description}</p>
-                </div>
-              </CardContent>
-              <CardFooter>
-                <Button variant='outline' className='w-full'>
-                  Details
-                </Button>
-              </CardFooter>
-            </Card>
+                </CardContent>
+                <CardFooter>
+                  <Button variant='outline' className='w-full'>
+                    Details
+                  </Button>
+                </CardFooter>
+              </Card>
+            </Link>
           ))}
         </div>
       ) : (

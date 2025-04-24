@@ -6,7 +6,13 @@ import { usePathname } from 'next/navigation';
 import { Flower, Menu } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetHeader,
+  SheetTitle,
+} from '@/components/ui/sheet';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -52,6 +58,11 @@ export default function Navbar() {
             </Button>
           </SheetTrigger>
           <SheetContent side='right'>
+            <SheetHeader>
+              <SheetTitle className='text-xl font-semibold text-gray-800 hidden'>
+                Menü
+              </SheetTitle>
+            </SheetHeader>
             <div className='flex flex-col gap-6 mt-8'>
               {routes.map((route) => (
                 <Link

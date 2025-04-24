@@ -5,20 +5,15 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import EventWidget from '@/components/event-widget';
 import GardenPreview from '@/components/garden-preview';
+import { UIImage } from '@/components/ui-image';
 
 export default function Home() {
   return (
     <div className='flex flex-col min-h-screen'>
-      <header className='relative bg-green-600 text-white py-12 md:py-24'>
+      <header className='relative bg-gradient-to-r from-green-600 via-green-700 via-green-800 via-green-700 to-green-600 text-white py-12 md:py-24'>
         {/* Hintergrundbild + Overlay */}
-        {/* <img
-          src='/logoOhneText.webp'
-          alt='Header Hintergrund'
-          className='absolute inset-0 h-full w-full object-cover z-0'
-        />
-        <div className='absolute inset-0 bg-black opacity-50 z-0' /> */}
         <div className="absolute inset-0 z-0 bg-[url('/logoOhneText__BG.png')] bg-no-repeat bg-center bg-contain">
-          <div className='absolute inset-0 bg-black opacity-50' />
+          <div className='absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/30' />
         </div>
 
         {/* Inhalt */}
@@ -39,9 +34,9 @@ export default function Home() {
                   Freie Gärten
                 </Button>
               </Link>
-              <Link href='/contact'>
+              <Link href='/events'>
                 <Button className='bg-white text-green-800 hover:bg-green-100'>
-                  Kontakt
+                  Veranstaltungen
                 </Button>
               </Link>
             </div>
@@ -64,15 +59,12 @@ export default function Home() {
                     einer Tasse Kaffee mit Nachbarn plaudern.
                   </p>
                 </div>
-                <div className='flex justify-center'>
-                  <img
-                    alt='Garten Gemeinschaft'
-                    className='rounded-lg object-cover aspect-square'
-                    height='400'
-                    src='/placeholder.svg?height=400&width=400'
-                    width='400'
-                  />
-                </div>
+                <UIImage
+                  src='/about-hero.jpg'
+                  alt='Über uns'
+                  hoverEffect='zoom'
+                  aspectRatio='square'
+                />
               </div>
               <div className='grid gap-6 lg:grid-cols-3'>
                 <Card>
