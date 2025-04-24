@@ -46,7 +46,7 @@ export default function AboutPage() {
             <div className='order-2 md:order-1'>
               <div className='relative'>
                 <UIImage
-                  src='/images/about-history.jpg'
+                  src='/girl-watering-flowers.png'
                   alt='Geschichte des Kleingartenvereins'
                   aspectRatio='square'
                   rounded='lg'
