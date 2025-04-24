@@ -76,6 +76,7 @@ export function UIImage({
 
   return (
     <div
+      style={{ height: '100%', width: '100%' }}
       className={cn(
         'overflow-hidden relative group',
         aspectRatio !== 'auto' && aspectRatioClasses[aspectRatio],
