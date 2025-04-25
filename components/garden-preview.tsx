@@ -38,7 +38,7 @@ export default function GardenPreview() {
       try {
         // Fetch gardens from Contentful
         const contentfulGardens = await fetchGardens();
-        console.log('Fetched gardens for preview:', contentfulGardens);
+        // console.log('Fetched gardens for preview:', contentfulGardens);
 
         // Transform Contentful data to our Garden interface
         const transformedGardens = contentfulGardens.map((garden) => {

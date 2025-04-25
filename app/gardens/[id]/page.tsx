@@ -58,7 +58,7 @@ export default function GardenDetailPage() {
 
         // Fetch garden from Contentful
         const contentfulGarden = await fetchGardenById(params.id as string);
-        console.log('Fetched garden:', contentfulGarden);
+        // console.log('Fetched garden:', contentfulGarden);
 
         if (!contentfulGarden) {
           throw new Error('Garden not found');
