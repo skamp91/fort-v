@@ -87,7 +87,17 @@ const config = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [
+    require('tailwindcss-animate'),
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.text-shadow-white': {
+          'text-shadow': '0 1px 2px rgba(255, 255, 255, 0.4)',
+        },
+      };
+      addUtilities(newUtilities, ['responsive']);
+    },
+  ],
 } satisfies Config;
 
 export default config;

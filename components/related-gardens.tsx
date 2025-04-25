@@ -14,6 +14,11 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import {
+  type ContentfulGarden,
+  fetchGardens,
+  getAssetUrl,
+} from '@/lib/contentful';
 
 interface Garden {
   id: string;
@@ -38,9 +43,40 @@ export default function RelatedGardens({
   useEffect(() => {
     const getGardens = async () => {
       try {
-        // In a real implementation, this would fetch from Contentful
-        // const gardensData = await fetchGardens()
-        // For demo purposes, we'll use mock data
+        // Fetch gardens from Contentful
+        const contentfulGardens = await fetchGardens();
+        console.log('Fetched gardens for related:', contentfulGardens);
+
+        // Transform Contentful data to our Garden interface
+        const transformedGardens = contentfulGardens.map((garden) => {
+          const contentfulGarden = garden as unknown as ContentfulGarden;
+
+          return {
+            id: contentfulGarden.sys.id,
+            number: contentfulGarden.fields.titel || 'Unnamed Garden',
+            size: `${contentfulGarden.fields.size || 0} m²`,
+            features: contentfulGarden.fields.ausstattungsmerkmale || [],
+            available: contentfulGarden.fields.availability || false,
+            image:
+              contentfulGarden.fields.bilder &&
+              contentfulGarden.fields.bilder.length > 0
+                ? getAssetUrl(contentfulGarden.fields.bilder[0])
+                : '/placeholder.svg',
+            description: contentfulGarden.fields.description || '',
+          };
+        });
+
+        // Filter out the current garden and limit to 3 related gardens
+        const relatedGardens = transformedGardens
+          .filter((garden) => garden.id !== currentGardenId && garden.available)
+          .slice(0, 3);
+
+        setGardens(relatedGardens);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching related gardens:', error);
+
+        // Fallback to mock data if Contentful fetch fails
         const mockGardens = [
           {
             id: '1',
@@ -48,7 +84,7 @@ export default function RelatedGardens({
             size: '250 m²',
             features: ['Laube', 'Wasseranschluss', 'Obstbäume'],
             available: true,
-            image: '/placeholder.svg?height=200&width=300',
+            image: '/images/garden-fruit-trees.jpg',
             description:
               'Schöner Garten mit altem Baumbestand und einer gut erhaltenen Laube.',
           },
@@ -58,7 +94,7 @@ export default function RelatedGardens({
             size: '300 m²',
             features: ['Gartenhaus', 'Stromanschluss', 'Gewächshaus'],
             available: true,
-            image: '/placeholder.svg?height=200&width=300',
+            image: '/images/garden-house.jpg',
             description:
               'Großzügiger Garten mit solidem Gartenhaus (20m²), Stromanschluss und einem kleinen Gewächshaus.',
           },
@@ -68,7 +104,7 @@ export default function RelatedGardens({
             size: '280 m²',
             features: ['Laube', 'Wasseranschluss', 'Beerensträucher'],
             available: true,
-            image: '/placeholder.svg?height=200&width=300',
+            image: '/images/garden-berries.jpg',
             description:
               'Gepflegter Garten mit vielen Beerensträuchern und einer einfachen Laube.',
           },
@@ -83,7 +119,7 @@ export default function RelatedGardens({
               'Teich',
             ],
             available: true,
-            image: '/placeholder.svg?height=200&width=300',
+            image: '/images/garden-pond.jpg',
             description:
               'Besonders schöner Garten mit einem kleinen Teich, Gartenhaus mit Strom- und Wasseranschluss.',
           },
@@ -93,7 +129,7 @@ export default function RelatedGardens({
             size: '200 m²',
             features: ['Laube', 'Wasseranschluss'],
             available: true,
-            image: '/placeholder.svg?height=200&width=300',
+            image: '/images/garden-vegetable.jpg',
             description:
               'Kleiner, überschaubarer Garten mit einfacher Laube und Wasseranschluss.',
           },
@@ -105,9 +141,6 @@ export default function RelatedGardens({
           .slice(0, 3);
 
         setGardens(relatedGardens);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching gardens:', error);
         setLoading(false);
       }
     };
@@ -166,7 +199,12 @@ export default function RelatedGardens({
             </p>
           </CardContent>
           <CardFooter>
-            <Link href={`/gardens/${garden.id}`} className='w-full'>
+            <Link
+              href={`/gardens/${garden.id}`}
+              passHref
+              legacyBehavior={false}
+              className='w-full'
+            >
               <Button
                 variant='outline'
                 className='w-full flex items-center justify-between'

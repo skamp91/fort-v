@@ -26,6 +26,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
 import GardenGallery from '@/components/garden-gallery';
 import RelatedGardens from '@/components/related-gardens';
+import { fetchGardenById, getAssetUrl } from '@/lib/contentful';
 
 interface Garden {
   id: string;
@@ -51,9 +52,49 @@ export default function GardenDetailPage() {
   useEffect(() => {
     const getGarden = async () => {
       try {
-        // In a real implementation, this would fetch from Contentful
-        // const gardenData = await fetchGardenById(params.id)
-        // For demo purposes, we'll use mock data
+        if (!params.id) {
+          throw new Error('Garden ID is missing');
+        }
+
+        // Fetch garden from Contentful
+        const contentfulGarden = await fetchGardenById(params.id as string);
+        console.log('Fetched garden:', contentfulGarden);
+
+        if (!contentfulGarden) {
+          throw new Error('Garden not found');
+        }
+
+        // Transform Contentful data to our Garden interface
+        const gardenData: Garden = {
+          id: contentfulGarden.sys.id,
+          number: contentfulGarden.fields.titel || 'Unnamed Garden',
+          size: `${contentfulGarden.fields.size || 0} m²`,
+          features: contentfulGarden.fields.ausstattungsmerkmale || [],
+          available: contentfulGarden.fields.availability || false,
+          description: contentfulGarden.fields.description || '',
+          fullDescription: contentfulGarden.fields.description || '', // Using the same field for now
+          image:
+            contentfulGarden.fields.bilder &&
+            contentfulGarden.fields.bilder.length > 0
+              ? getAssetUrl(contentfulGarden.fields.bilder[0])
+              : '/placeholder.svg',
+          images: contentfulGarden.fields.bilder
+            ? contentfulGarden.fields.bilder.map((image) => getAssetUrl(image))
+            : ['/placeholder.svg'],
+          location: 'Kleingartenanlage Grüne Oase', // Default location
+          price: 'Auf Anfrage', // Default price
+          availableFrom: contentfulGarden.fields.availability
+            ? 'Sofort'
+            : 'Nicht verfügbar',
+        };
+
+        setGarden(gardenData);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching garden:', error);
+
+        // Fallback to mock data if Contentful fetch fails
+        // Mock data remains the same
         const mockGardens: Record<string, Garden> = {
           '1': {
             id: '1',
@@ -67,7 +108,7 @@ export default function GardenDetailPage() {
               'Teilweise Schatten',
             ],
             available: true,
-            image: '/placeholder.svg?height=200&width=300',
+            image: '/images/garden-fruit-trees.jpg',
             description:
               'Schöner Garten mit altem Baumbestand und einer gut erhaltenen Laube.',
             fullDescription:
@@ -76,10 +117,10 @@ export default function GardenDetailPage() {
             price: '1.200 € Ablöse + 180 € Jahrespacht',
             availableFrom: 'Sofort',
             images: [
-              '/placeholder.svg?height=600&width=800',
-              '/placeholder.svg?height=600&width=800',
-              '/placeholder.svg?height=600&width=800',
-              '/placeholder.svg?height=600&width=800',
+              '/images/garden-fruit-trees.jpg',
+              '/images/garden-berries.jpg',
+              '/images/garden-vegetable.jpg',
+              '/images/garden-shed.jpg',
             ],
           },
           '2': {
@@ -94,7 +135,7 @@ export default function GardenDetailPage() {
               'Wassertank',
             ],
             available: true,
-            image: '/placeholder.svg?height=200&width=300',
+            image: '/images/garden-house.jpg',
             description:
               'Großzügiger Garten mit solidem Gartenhaus (20m²), Stromanschluss und einem kleinen Gewächshaus.',
             fullDescription:
@@ -104,10 +145,10 @@ export default function GardenDetailPage() {
             price: '2.500 € Ablöse + 220 € Jahrespacht',
             availableFrom: 'Ab 01.06.2024',
             images: [
-              '/placeholder.svg?height=600&width=800',
-              '/placeholder.svg?height=600&width=800',
-              '/placeholder.svg?height=600&width=800',
-              '/placeholder.svg?height=600&width=800',
+              '/images/garden-house.jpg',
+              '/images/garden-pond.jpg',
+              '/images/garden-fruit-trees.jpg',
+              '/images/garden-vegetable.jpg',
             ],
           },
           '3': {
@@ -122,7 +163,7 @@ export default function GardenDetailPage() {
               'Ebenes Gelände',
             ],
             available: true,
-            image: '/placeholder.svg?height=200&width=300',
+            image: '/images/garden-berries.jpg',
             description:
               'Gepflegter Garten mit vielen Beerensträuchern und einer einfachen Laube.',
             fullDescription:
@@ -131,10 +172,10 @@ export default function GardenDetailPage() {
             price: '1.800 € Ablöse + 200 € Jahrespacht',
             availableFrom: 'Sofort',
             images: [
-              '/placeholder.svg?height=600&width=800',
-              '/placeholder.svg?height=600&width=800',
-              '/placeholder.svg?height=600&width=800',
-              '/placeholder.svg?height=600&width=800',
+              '/images/garden-berries.jpg',
+              '/images/garden-fruit-trees.jpg',
+              '/images/garden-vegetable.jpg',
+              '/images/garden-shed.jpg',
             ],
           },
           '4': {
@@ -149,7 +190,7 @@ export default function GardenDetailPage() {
               'Südwestausrichtung',
             ],
             available: true,
-            image: '/placeholder.svg?height=200&width=300',
+            image: '/images/garden-pond.jpg',
             description:
               'Besonders schöner Garten mit einem kleinen Teich, Gartenhaus mit Strom- und Wasseranschluss.',
             fullDescription:
@@ -158,10 +199,10 @@ export default function GardenDetailPage() {
             price: '3.200 € Ablöse + 240 € Jahrespacht',
             availableFrom: 'Ab 15.07.2024',
             images: [
-              '/placeholder.svg?height=600&width=800',
-              '/placeholder.svg?height=600&width=800',
-              '/placeholder.svg?height=600&width=800',
-              '/placeholder.svg?height=600&width=800',
+              '/images/garden-pond.jpg',
+              '/images/garden-house.jpg',
+              '/images/garden-berries.jpg',
+              '/images/garden-vegetable.jpg',
             ],
           },
           '5': {
@@ -175,7 +216,7 @@ export default function GardenDetailPage() {
               'Ebenes Gelände',
             ],
             available: true,
-            image: '/placeholder.svg?height=200&width=300',
+            image: '/images/garden-vegetable.jpg',
             description:
               'Kleiner, überschaubarer Garten mit einfacher Laube und Wasseranschluss.',
             fullDescription:
@@ -184,10 +225,10 @@ export default function GardenDetailPage() {
             price: '900 € Ablöse + 150 € Jahrespacht',
             availableFrom: 'Sofort',
             images: [
-              '/placeholder.svg?height=600&width=800',
-              '/placeholder.svg?height=600&width=800',
-              '/placeholder.svg?height=600&width=800',
-              '/placeholder.svg?height=600&width=800',
+              '/images/garden-vegetable.jpg',
+              '/images/garden-fruit-trees.jpg',
+              '/images/garden-berries.jpg',
+              '/images/garden-shed.jpg',
             ],
           },
         };
@@ -202,11 +243,6 @@ export default function GardenDetailPage() {
         }
 
         setLoading(false);
-      } catch (error) {
-        console.error('Error fetching garden:', error);
-        setLoading(false);
-        // Handle error, maybe redirect
-        router.push('/gardens');
       }
     };
 
