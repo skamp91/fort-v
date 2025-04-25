@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
+
 import { ArrowRight, Filter, Ruler, Trees, X } from 'lucide-react';
 import {
   Card,
@@ -217,10 +219,20 @@ export default function GardensClient({ gardens }: GardensClientProps) {
                 </p>
               </CardContent>
               <CardFooter>
-                <Button variant='outline' className='w-full'>
-                  <span>Details ansehen</span>
-                  <ArrowRight className='h-4 w-4' />
-                </Button>
+                <Link
+                  href={`/gardens/${garden.id}`}
+                  passHref
+                  legacyBehavior={false}
+                  className='w-full'
+                >
+                  <Button
+                    variant='outline'
+                    className='w-full flex items-center justify-between'
+                  >
+                    <span>Details ansehen</span>
+                    <ArrowRight className='h-4 w-4' />
+                  </Button>
+                </Link>
               </CardFooter>
             </Card>
           ))

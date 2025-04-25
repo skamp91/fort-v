@@ -6,8 +6,24 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import EventWidget from '@/components/event-widget';
 import GardenPreview from '@/components/garden-preview';
 import { UIImage } from '@/components/ui-image';
+import { fetchGardens, getAssetUrl } from '@/lib/contentful';
 
-export default function Home() {
+export default async function Home() {
+  const contentfulGardens = await fetchGardens();
+
+  const gardens = contentfulGardens.map((garden) => ({
+    id: garden.sys.id,
+    number: garden.fields.titel || 'Unnamed Garden',
+    size: String(garden.fields.size || 0),
+    features: garden.fields.ausstattungsmerkmale || [],
+    available: garden.fields.availability || false,
+    image:
+      garden.fields.bilder && garden.fields.bilder.length > 0
+        ? getAssetUrl(garden.fields.bilder[0])
+        : '/placeholder.svg',
+    description: garden.fields.description || '',
+  }));
+
   return (
     <div className='flex flex-col min-h-screen'>
       <header className='relative bg-gradient-to-r from-green-500 via-green-700 via-green-900 via-green-700 to-green-500 text-white h-[400px] md:h-[500px] py-12 md:py-24'>
@@ -144,7 +160,7 @@ export default function Home() {
                 </p>
               </div>
               <div className='grid gap-6 sm:grid-cols-2 lg:grid-cols-3'>
-                <GardenPreview />
+                <GardenPreview gardens={gardens} />
               </div>
               <div className='flex justify-center'>
                 <Link href='/gardens'>
